@@ -5,7 +5,7 @@ import { initializeSearch } from './search.js';
 const stationInfoResp = await fetch('https://gbfs.bcycle.com/bcycle_indego/station_information.json')
 const stationInfo = await stationInfoResp.json();
 
-const events = new EventTarget;
+const events = new EventTarget(); // events object here is the event bus
 
-initializeMap(stationInfo);
-initializeSearch(stationInfo);
+initializeMap(stationInfo, events); // pass event bus to each of the initialize function, so if event is fired in searchbox, map can listen to that event
+initializeSearch(stationInfo, events);
